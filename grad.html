@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Congratulations Susan Paloshe!</title>
+<!-- Google Font for bubbly effect -->
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&display=swap" rel="stylesheet">
+<style>
+  /* ===== Global Styles ===== */
+  body {
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #7b1fa2, #b39ddb);
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+  }
+  a { text-decoration:none; color:inherit; }
+  h1,h2,h3 { margin:0; }
+  button { cursor:pointer; }
+
+  /* ===== Confetti ===== */
+  .confetti {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    top: -20px;
+    opacity:0.9;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(120vh) rotate(360deg); }
+  }
+
+  /* ===== Landing Section ===== */
+  .landing {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:100px 20px 20px 20px;
+    flex-wrap:wrap;
+    position: relative;
+    z-index:1;
+  }
+  .landing-text {
+    max-width:500px;
+    animation: fadeIn 1s ease forwards;
+  }
+  .landing-text h1 {
+    font-family: 'Baloo 2', cursive;
+    font-size:3rem;
+    color: #ffd54f;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    margin-bottom:0.5rem;
+    animation: floatText 2s ease-in-out infinite alternate;
+  }
+  .landing-text h2 {
+    font-size:1.4rem;
+    color: #ffffffcc;
+    font-weight:500;
+    margin-bottom:1rem;
+  }
+  .landing-text p {
+    font-size:1.1rem;
+    line-height:1.5;
+  }
+  .landing-img img {
+    max-width:300px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  }
+
+  @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+  @keyframes floatText { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+
+  /* ===== Sidebar ===== */
+  .sidebar {
+    position:fixed;
+    top:0;
+    left:-220px;
+    width:200px;
+    height:100%;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding-top:60px;
+    transition: left 0.3s ease;
+    z-index:1000;
+  }
+  .sidebar.open { left:0; }
+  .sidebar h3 { text-align:center; margin-bottom:20px; }
+  .sidebar ul { list-style:none; padding:0; }
+  .sidebar ul li {
+    padding:10px;
+    text-align:center;
+    border-bottom:1px solid #fff4;
+    cursor:pointer;
+    transition: background 0.2s;
+  }
+  .sidebar ul li:hover { background: #fff2; }
+
+  /* Sidebar toggle button */
+  .sidebar-toggle {
+    position:fixed;
+    top:20px;
+    left:20px;
+    background:#fff4;
+    color:#7b1fa2;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    z-index:1100;
+  }
+
+  /* ===== Gift Modal ===== */
+  .gift-modal {
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.8);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 0.3s ease;
+    z-index:2000;
+  }
+  .gift-modal.open {
+    opacity:1;
+    pointer-events:auto;
+  }
+  .gift-content {
+    background: linear-gradient(135deg,#7b1fa2,#b39ddb);
+    padding:20px;
+    border-radius:15px;
+    max-width:600px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    position:relative;
+  }
+  .gift-content h3 { text-align:center; margin-bottom:15px; }
+  .close-btn {
+    position:absolute;
+    top:10px;
+    right:15px;
+    background:#fff4;
+    color:#7b1fa2;
+    border:none;
+    border-radius:50%;
+    width:30px;
+    height:30px;
+    font-weight:bold;
+    font-size:18px;
+  }
+
+  /* ===== Typing effect ===== */
+  .typing {
+    white-space:pre-wrap;
+    border-right:2px solid #ffd54f;
+    padding-right:5px;
+    overflow:hidden;
+  }
+
+  /* ===== Slideshow ===== */
+  .slideshow {
+    position:relative;
+    width:100%;
+    max-width:100%;
+    margin:10px auto;
+  }
+  .slide-img {
+    width:100%;
+    border-radius:12px;
+  }
+  .slide-btn {
+    position:absolute;
+    top:50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.3);
+    border:none;
+    font-size:1.5rem;
+    color:#fff;
+    padding:5px 10px;
+    cursor:pointer;
+    border-radius:5px;
+  }
+  .prev { left:10px; }
+  .next { right:10px; }
+
+  /* ===== Responsive ===== */
+  @media(max-width:768px) {
+    .landing { flex-direction:column; align-items:center; }
+    .landing-img img { max-width:80%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Confetti JS will generate -->
+<!-- Sidebar Toggle -->
+<button class="sidebar-toggle" onclick="toggleSidebar()">Gifts 🎁</button>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <h3>Gifts</h3>
+  <ul>
+    <li onclick="openGift(0)">Heartfelt Letter</li>
+    <li onclick="openGift(1)">Gallery of Memories</li>
+    <li onclick="openGift(2)">Poem</li>
+    <li onclick="openGift(3)">Future Vision</li>
+    <li onclick="openGift(4)">Funny Moment</li>
+  </ul>
+</div>
+
+<!-- Landing Page -->
+<div class="landing">
+  <div class="landing-text">
+    <h1>🎉 Congratulations!</h1>
+    <h2>Susan Paloshe -( Barxtequery & Kiki)</h2>
+    <p>You made it! Today we celebrate your incredible journey, your strength, and your achievements. I adore the woman you have become and are becoming
+    . as you celebrate this milestone all I can say is you deserve everything my dear. 🌟</p>
+  </div>
+  <div class="landing-img">
+    <img src="loshe1.jpg" alt="Susan">
+  </div>
+</div>
+
+<!-- Gift Modals -->
+<div class="gift-modal" id="giftModal">
+  <div class="gift-content">
+    <button class="close-btn" onclick="closeGift()">×</button>
+    <div id="giftInner"></div>
+  </div>
+</div>
+
+<script>
+  // ===== Confetti =====
+  for(let i=0;i<50;i++){
+    let c=document.createElement('div');
+    c.classList.add('confetti');
+    c.style.left=Math.random()*100+'vw';
+    c.style.width = c.style.height = 8 + Math.random()*8 + 'px';
+    c.style.animationDuration = 2 + Math.random()*3 + 's';
+    c.style.background = ['#ffd54f','#ff4081','#7c4dff','#00e5ff'][Math.floor(Math.random()*4)];
+    document.body.appendChild(c);
+  }
+
+  // ===== Sidebar toggle =====
+  const sidebar = document.getElementById('sidebar');
+  function toggleSidebar() { sidebar.classList.toggle('open'); }
+
+  // ===== Gifts content =====
+  const gifts = [
+    `<h3>🎁 Heartfelt Letter</h3><p class="typing" id="typing1"></p>`,
+    `<h3>🎁 Gallery of Memories</h3>
+    <div class="slideshow">
+      <img id="slideImg" class="slide-img" src="loshe1.jpg" alt="memory">
+      <button class="slide-btn prev" onclick="prevSlide()">◀</button>
+      <button class="slide-btn next" onclick="nextSlide()">▶</button>
+    </div>`,
+    `<h3>🎁 Poem</h3><p class="typing" id="typing2"></p>`,
+    `<h3>🎁 Future Vision</h3><p class="typing" id="typing3"></p>`,
+    `<h3>🎁 Funny Moment</h3>
+    <p>Rememeber Mundia right, remember all it took and all memories you created.</p>`
+  ];
+
+  // ===== Modal handling =====
+  const giftModal = document.getElementById('giftModal');
+  const giftInner = document.getElementById('giftInner');
+  let currentGift = 0;
+  function openGift(index){
+    giftInner.innerHTML = gifts[index];
+    giftModal.classList.add('open');
+    currentGift = index;
+    if(index===0) typeText("Susan, pause and feel this day. Feel every late night, every doubt, every small victory that brought you here. I’m proud of you — proud of your strength, courage, and growth. You’ve accomplished so much, and I’ll always be here cheering for you.");
+    if(index===2) typeText("She didn’t rise by daylight, She rose by nights that stretched too long, By battles she never spoke about, By strength she didn’t know she had. Now look at her — standing tall, wearing the victory she earned.");
+    if(index===3) typeText("I see you successful — flying to Thailand, exploring all your dream places, living freely. Your sisters are thriving, safe, happy — just the way you always wanted. You’re building a life full of richness, joy, and love. And I’ll be there for every step of your amazing journey.");
+  }
+  function closeGift(){ giftModal.classList.remove('open'); }
+
+  // ===== Typing effect =====
+  function typeText(text){
+    let i=0;
+    const typingElems = document.querySelectorAll('.typing');
+    const el = typingElems[typingElems.length-1];
+    el.innerHTML="";
+    const interval = setInterval(()=>{
+      if(i<text.length){ el.innerHTML+=text.charAt(i); i++; } 
+      else clearInterval(interval);
+    },20);
+  }
+
+  // ===== Slideshow =====
+  const photos = ['loshe1.jpg','loshe2.jpg','loshe3.jpg','loshe4.jpg','loshe5.jpg','loshe6.jpg','loshe7.jpg'];
+  let currentSlide = 0;
+  function nextSlide(){
+    currentSlide = (currentSlide+1)%photos.length;
+    document.getElementById('slideImg').src = photos[currentSlide];
+  }
+  function prevSlide(){
+    currentSlide = (currentSlide-1+photos.length)%photos.length;
+    document.getElementById('slideImg').src = photos[currentSlide];
+  }
+</script>
+
+</body>
+</html>
